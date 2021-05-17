@@ -38,38 +38,48 @@ using namespace std;
 #define mod 1000000007
 #define md 998244353 
 #define N 200009
+
+
 //typedef tree<int,null_type, less<int>, rb_tree_tag,tree_order_statistics_node_update> //pbds;
 
-ll gcd(ll a, ll b)
+
+ll check(ll m,ll a,ll b)
 {
-    if (b == 0)
-        return a;
-    return gcd(b, a % b);
+    if(((m%a)%b)==((m%b)%a))
+    return 1;
+    else 
+    return 0;
 }
 
-void solve(ll k)
+void solve(ll n,ll m)
 {
-    ll l=(2*k),i=1,ans=0;
-    while(l--)
+    ll  ans=n-1,j;
+    for(ll i=2;i<=n;++i)
     {
-        ans+=gcd((i*i)+k,((i+1)*(i+1))+k);
-        cout<<i<<" "<<gcd((i*i)+k,((i+1)*(i+1))+k)<<endl;
-        i++;
-    }
-    cout<<ans<<endl;
+        for(j=i+1;j<=n;++j)
+        {
+            if(check(m,i,j)) 
+            {
+            ans++;
 
+             cout<<i<<" "<<j<<endl;
+
+            }
+        }
+        
+    }
+    printf("%lld\n",ans);
 }
 
 int main()
 {
-    ll cases,k;
-    cin>>cases;
-    while(cases--)
+    ll cases,n,m;
+    scanf("%lld",&cases);
+    while (cases--)
     {
-        cin>>k;
-        solve(k);
+        scanf("%lld%lld",&n,&m);
+        solve(n,m);
     }
-
- 
+    
     return 0;
 }

@@ -49,12 +49,25 @@ ll gcd(ll a, ll b)
 
 void solve(ll k)
 {
-    ll l=(2*k),i=1,ans=0;
-    while(l--)
+    ll l=(2*k),i=1,ans=0,r,m;
+    r=l%10;
+    
+    for(i=1;i<=10 && i<=l;i++ )
     {
         ans+=gcd((i*i)+k,((i+1)*(i+1))+k);
-        cout<<i<<" "<<gcd((i*i)+k,((i+1)*(i+1))+k)<<endl;
-        i++;
+    }
+    
+    m=l/10;
+    
+    if(m>1)
+    ans*=m;
+    
+    if(l>10)
+    {
+        for(i=1;i<=r;i++ )
+    {
+        ans+=gcd((i*i)+k,((i+1)*(i+1))+k);
+    }
     }
     cout<<ans<<endl;
 

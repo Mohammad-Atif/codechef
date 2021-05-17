@@ -47,14 +47,30 @@ ll gcd(ll a, ll b)
     return gcd(b, a % b);
 }
 
-void solve(ll k)
+class details
 {
-    ll l=(2*k),i=1,ans=0;
-    while(l--)
+    public:
+
+    int vals[11];
+
+    details(ll k)
     {
-        ans+=gcd((i*i)+k,((i+1)*(i+1))+k);
-        cout<<i<<" "<<gcd((i*i)+k,((i+1)*(i+1))+k)<<endl;
-        i++;
+        for(int i=1;i<=10;i++)
+        {
+            vals[i%10]=gcd((i*i)+k,((i+1)*(i+1))+k);
+        }
+    }
+
+};
+
+
+void solve(ll k,details d)
+{
+    ll l,i=1,ans=0;
+    for(l=0;l<2*k;l++)
+    {
+        ans+=d.vals[i];
+        i=(i+1)%10;
     }
     cout<<ans<<endl;
 
@@ -67,7 +83,8 @@ int main()
     while(cases--)
     {
         cin>>k;
-        solve(k);
+        details d(k);
+        solve(k,d);
     }
 
  
